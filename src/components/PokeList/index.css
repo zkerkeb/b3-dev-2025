@@ -1,0 +1,10 @@
+.poke-list-item {
+
+    margin-right:12px;
+    margin-bottom:12px;
+}
+
+.poke-list {
+    display: flex;
+    flex-wrap: wrap;
+}
