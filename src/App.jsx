@@ -1,18 +1,12 @@
-import './App.css'
-import StudentLine from './components/StudentLine'
-import Counter from './components/Counter'
-import TodoList from './components/TodoList'
-import PokeList from './components/PokeList'
+import {
+  RouterProvider,
+} from "react-router";
+import router from "./config/router";
 
 function App() {
 
   return (
-    <div>
-      {/* <StudentLine name="Benjamin" />
-      <Counter /> */}
-      {/* <TodoList /> */}
-      <PokeList />
-    </div>
+      <RouterProvider router={router} />
   )
 }
 

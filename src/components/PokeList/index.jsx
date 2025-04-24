@@ -2,9 +2,11 @@ import axios from 'axios'
 import {  useEffect, useState } from 'react'
 import PokeCard from '../PokeCard'
 import './index.css'
+import { useNavigate } from 'react-router'
 
 
 const PokeList = () => {
+const navigate = useNavigate();
 const [pokemons, setPokemons] = useState([])
 
 useEffect(() => {
@@ -15,12 +17,19 @@ useEffect(() => {
 
         axios({
             method: 'GET',
-            url: 'http://localhost:3000/api/pokemons'
+            url: 'http://localhost:3000/api/pokemons',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem("token")}`
+            }
         })
         .then((response) =>{
             setPokemons(response.data.pokemons)
         })
         .catch((error) => {
+            if (error.response.status === 401) {
+                localStorage.removeItem("token");
+                navigate("/login");
+            }
             console.log('error', error)
         })
 
