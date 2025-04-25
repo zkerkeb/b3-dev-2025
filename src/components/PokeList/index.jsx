@@ -9,6 +9,8 @@ const PokeList = () => {
 const navigate = useNavigate();
 const [pokemons, setPokemons] = useState([])
 
+
+
 useEffect(() => {
     console.log('pokemons', pokemons)
 }, [pokemons])
@@ -36,6 +38,13 @@ useEffect(() => {
         
     },[])
 
+
+
+    const handleNavigationToDetailPage = (id) => {
+        navigate(`/pokemon/${id}`)
+    }
+    
+
     return (
         <div>
             <h1>PokeList</h1>
@@ -46,6 +55,8 @@ useEffect(() => {
                    <PokeCard frenchName={pokemon.name.french} englishName={pokemon.name.english} type={pokemon.type}
                    image={pokemon.image}
                    base={pokemon.base}
+                   id={pokemon.id}
+                   onClick={() => handleNavigationToDetailPage(pokemon.id)}
                 />
                 </div>
                 )
