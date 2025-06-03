@@ -3,7 +3,10 @@ import './index.css'
 import { useNavigate } from 'react-router'
 
 
-const PokeCard = ({frenchName, englishName, type = [], image, base, id, onClick = () => null}) => {
+
+const PokeCard = ({frenchName, englishName, type = [], image, base = {}, onClick = () => null}) => {
+    // console.log("🚀 ~ PokeCard ~ props:", props)
+    // console.log(typeof props)
 
     const typeClassName = `type-${type[0]}`
 

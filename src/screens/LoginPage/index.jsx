@@ -4,8 +4,8 @@ import axios from "axios"
 
 const LoginPage = () => {
     const navigate = useNavigate();
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("admin");
+    const [password, setPassword] = useState("admin");
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
