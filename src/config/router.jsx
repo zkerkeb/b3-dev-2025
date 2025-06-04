@@ -18,16 +18,24 @@ let router = createBrowserRouter([
     path: "/login",
     Component: LoginPage,
   },
+
   {
     Component: ProtectedRoutes,
-    children: [{
-      path: "/pokemon",
-      Component: PokemonPage,
-    },
-    {
-      path: "/pokemon/:id",
-      Component: PokemonDetailPage,
-    }]
+    children: [
+      {
+        Component: Layout,
+        children: [
+          {
+            path: "/pokemon",
+            Component: PokemonPage,
+          },
+          {
+            path: "/pokemon/:id",
+            Component: PokemonDetailPage,
+          }]
+      },
+      
+     ]
   },
 
 
