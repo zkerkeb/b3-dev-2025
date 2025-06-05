@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router'
 const PokeList = () => {
 const navigate = useNavigate();
 const [pokemons, setPokemons] = useState([])
+const [offset, setOffset] = useState(0)
+const [limit, setLimit] = useState(10)
 const [search, setSearch] = useState('')
 const [isLoading, setIsLoading] = useState(false)
 
@@ -25,19 +27,21 @@ useEffect(() => {
 const getPokemons = async () => {
     setIsLoading(true)
     
+    setTimeout(() => {
     axios({
         method: 'GET',
-        url: `http://localhost:3000/api/pokemons?search=${search}`,
-     
+        url: `http://localhost:3000/api/pokemons?search=${search}&limit=${limit}&offset=${offset}`,
     })
     .then((response) =>{
         setIsLoading(false)
-        setPokemons(response.data.pokemons)
+        setPokemons([...pokemons, ...response.data.pokemons])
     })
     .catch((error) => {
         setIsLoading(false)
         console.log('error', error)
     })
+}, 1000)
+
 
 }
     useEffect(() => {
@@ -49,7 +53,7 @@ const getPokemons = async () => {
         }, 500)
 
         
-    },[search])
+    },[search, offset])
 
 
 
@@ -93,6 +97,7 @@ const getPokemons = async () => {
                 </div>
                 )
             })}
+            <button className={isLoading ? 'loading-button' : 'load-more-button'} onClick={isLoading ? null : () => setOffset(offset + limit)}>{isLoading ? 'Loading...' : 'Load more'}</button>
             </div>
         </div>
     )

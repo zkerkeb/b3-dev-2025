@@ -35,3 +35,12 @@
     align-items: center;
     /* justify-content: center; */
 }
+
+.loading-button {
+    background-color: #ccc !important;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
